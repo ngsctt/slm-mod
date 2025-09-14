@@ -1,4 +1,6 @@
-var Parser = require('../lib/parser');
+import { expect } from 'jsr:@std/expect';
+import { describe, test } from 'jsr:@std/testing/bdd'
+import Parser from '../lib/parser.js';
 
 
 describe('Parser', function() {

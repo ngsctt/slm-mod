@@ -1,4 +1,6 @@
-var Filter = require('../lib/filter');
+import { expect } from 'jsr:@std/expect';
+import { beforeEach, describe, test } from 'jsr:@std/testing/bdd'
+import Filter from '../lib/filter.js';
 
 
 describe('Filter', function() {

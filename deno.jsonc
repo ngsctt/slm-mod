@@ -1,0 +1,6 @@
+{
+  "tasks": {
+    "test": "deno test",
+    "test-break": "deno test --inspect-wait=0.0.0.0:9229 __tests__/core/html_structure.js"
+  }
+}

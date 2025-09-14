@@ -1,4 +1,6 @@
-var VM = require('../lib/vm');
+import { expect } from 'jsr:@std/expect';
+import { describe, test } from 'jsr:@std/testing/bdd'
+import VM from '../lib/vm.js';
 
 describe('VM', function() {
 

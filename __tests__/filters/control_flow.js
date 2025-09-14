@@ -1,4 +1,6 @@
-var ControlFlow = require('../../lib/filters/control_flow');
+import { expect } from 'jsr:@std/expect';
+import { beforeEach, describe, test } from 'jsr:@std/testing/bdd'
+import ControlFlow from '../../lib/filters/control_flow.js';
 
 describe('ControlFlow', function() {
 

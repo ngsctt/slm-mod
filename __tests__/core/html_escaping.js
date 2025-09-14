@@ -1,10 +1,12 @@
-var Template = require('../../lib/template');
-var assertHtml = require('../helper').assertHtml;
+import { beforeEach, describe, test } from 'jsr:@std/testing/bdd'
+import Template from '../../lib/template.js';
+import VMBrowser from '../../lib/vm_browser.js';
+import { assertHtml } from '../helper.js';
 
 describe('Html escaping', function() {
   var template;
   beforeEach(function() {
-    template = new Template(require('../../lib/vm_node'));
+    template = new Template(VMBrowser);
   });
 
   test('html will not be escaped', function() {

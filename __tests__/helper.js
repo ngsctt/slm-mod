@@ -1,6 +1,7 @@
-var VM = require('../lib/vm');
+import { expect } from 'jsr:@std/expect';
+import VM from '../lib/vm.js';
 
-exports.assertHtml = function(template, src, result, options) {
+export function assertHtml(template, src, result, options) {
 
   if (Array.isArray(src)) {
     src = src.join('\n');
@@ -52,7 +53,7 @@ exports.assertHtml = function(template, src, result, options) {
   expect(template.render(src, context, options)).toEqual(result);
 };
 
-exports.assertSyntaxError = function(template, src, result, options) {
+export function assertSyntaxError(template, src, result, options) {
   src = src.join('\n');
   var context = {
     idHelper: 'notice',
@@ -72,5 +73,5 @@ exports.assertSyntaxError = function(template, src, result, options) {
   };
   expect(function() {
     template.render(src, context, options);
-  }).toThrowError(result);
+  }).toThrow(result);
 };

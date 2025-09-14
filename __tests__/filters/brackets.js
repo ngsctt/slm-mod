@@ -1,4 +1,6 @@
-var Brackets = require('../../lib/filters/brackets');
+import { expect } from 'jsr:@std/expect';
+import { beforeEach, describe, test } from 'jsr:@std/testing/bdd'
+import Brackets from '../../lib/filters/brackets.js';
 
 describe('Brackets', function() {
 

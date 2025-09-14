@@ -1,4 +1,6 @@
-var Filter = require('../../lib/html/fast');
+import { expect } from 'jsr:@std/expect';
+import { beforeEach, describe, test } from 'jsr:@std/testing/bdd'
+import Filter from '../../lib/html/fast.js';
 
 describe('Fast', function() {
 

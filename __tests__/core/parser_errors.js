@@ -1,12 +1,13 @@
-var Template = require('../../lib/template');
-var assertHtml = require('../helper').assertHtml;
-var assertSyntaxError = require('../helper').assertSyntaxError;
+import { beforeEach, describe, test } from 'jsr:@std/testing/bdd'
+import Template from '../../lib/template.js';
+import VMBrowser from '../../lib/vm_browser.js';
+import { assertHtml, assertSyntaxError } from '../helper.js';
 
 describe('Parser errors', function() {
 
   var template;
 
-  beforeEach(function() { template = new Template(require('../../lib/vm_node')); });
+  beforeEach(function() { template = new Template(VMBrowser); });
 
   test('correct filename', function() {
     assertSyntaxError(template, [

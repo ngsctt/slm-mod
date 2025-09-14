@@ -1,11 +1,14 @@
-var Template = require('../../lib/template');
-var assertHtml = require('../helper').assertHtml;
+import { expect } from 'jsr:@std/expect';
+import { describe, beforeEach, test } from 'jsr:@std/testing/bdd'
+import Template from '../../lib/template.js';
+import VMBrowser from '../../lib/vm_browser.js';
+import { assertHtml } from '../helper.js';
 
 describe('Embedded engines', function() {
   var template;
 
   beforeEach(function() {
-    template = new Template(require('../../lib/vm_node'));
+    template = new Template(VMBrowser);
     template.registerEmbeddedFunction('customEngine', function(body) {
       return '<pre>' + body + '</pre>';
     });
@@ -73,6 +76,6 @@ describe('Embedded engines', function() {
         '  text'
         ],
         '', {});
-    }).toThrowError('Embedded engine unregistered is not registered.');
+    }).toThrow('Embedded engine unregistered is not registered.');
   });
 });

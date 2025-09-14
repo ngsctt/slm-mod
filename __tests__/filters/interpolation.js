@@ -1,10 +1,13 @@
-var Template = require('../../lib/template');
+import { expect } from 'jsr:@std/expect';
+import { beforeEach, describe, test } from 'jsr:@std/testing/bdd'
+import Template from '../../lib/template.js';
+import VMBrowser from '../../lib/vm_browser.js';
 
 describe('Interpolate', function() {
 
   var template;
   beforeEach(function() {
-    template = new Template(require('../../lib/vm_node'));
+    template = new Template(VMBrowser);
   });
 
   test('interpolation in attribute', function() {
@@ -42,7 +45,7 @@ describe('Interpolate', function() {
   test('Text interpolation: Expected closing }', function() {
     var src = 'p ${abc';
 
-    expect(function(){ template.render(src, {}); }).toThrowError('Text interpolation: Expected closing }');
+    expect(function(){ template.render(src, {}); }).toThrow('Text interpolation: Expected closing }');
 
   });
 

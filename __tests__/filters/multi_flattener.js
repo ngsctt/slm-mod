@@ -1,4 +1,6 @@
-var MultiFlattener = require('../../lib/filters/multi_flattener');
+import { expect } from 'jsr:@std/expect';
+import { beforeEach, describe, test } from 'jsr:@std/testing/bdd'
+import MultiFlattener from '../../lib/filters/multi_flattener.js';
 
 describe('MultiFlattener', function() {
 

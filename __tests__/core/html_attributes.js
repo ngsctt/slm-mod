@@ -1,13 +1,16 @@
-var Template = require('../../lib/template');
-var assertHtml = require('../helper').assertHtml;
+import { expect } from 'jsr:@std/expect';
+import { beforeEach, describe, test } from 'jsr:@std/testing/bdd'
+import Template from '../../lib/template.js';
+import VMBrowser from '../../lib/vm_browser.js';
+import { assertHtml } from '../helper.js';
 
 describe('Html attribtues', function() {
   var template;
   var htmlTemplate;
 
   beforeEach(function() {
-    template = new Template(require('../../lib/vm_node'));
-    htmlTemplate = new Template(require('../../lib/vm_node'), {mergeAttrs: { 'class': ' ' }, attrDelims: { '(': ')' },  format: 'html' });
+    template = new Template(VMBrowser);
+    htmlTemplate = new Template(VMBrowser, {mergeAttrs: { 'class': ' ' }, attrDelims: { '(': ')' },  format: 'html' });
   });
 
   test('vue syntax 1', function() {
@@ -83,7 +86,7 @@ describe('Html attribtues', function() {
   });
 
   test('id attribute merging', function() {
-    var tmpl = new Template(require('../../lib/vm_node'), {mergeAttrs: {'id': '-'}});
+    const tmpl = new Template(VMBrowser, {mergeAttrs: {'id': '-'}});
     assertHtml(tmpl, [
       '#alpha id="beta" Test it'
       ],
@@ -98,11 +101,11 @@ describe('Html attribtues', function() {
         ],
         '<div id="alpha-beta">Test it</div>',
         {});
-    }).toThrowError('Multiple id attributes specified');
+    }).toThrow('Multiple id attributes specified');
   });
 
   test('id attribute merging with array', function() {
-    var tmpl = new Template(require('../../lib/vm_node'), {mergeAttrs: {'id': '_'}});
+    const tmpl = new Template(VMBrowser, {mergeAttrs: {'id': '_'}});
     assertHtml(tmpl, [
       '#alpha id=["beta", "gamma"] Test it'
       ],

@@ -1,4 +1,6 @@
-var StaticMerger = require('../../lib/filters/static_merger');
+import { expect } from 'jsr:@std/expect';
+import { beforeEach, describe, test } from 'jsr:@std/testing/bdd'
+import StaticMerger from '../../lib/filters/static_merger.js';
 
 describe('StaticMerger', function() {
 

@@ -1,4 +1,6 @@
-var Escape = require('../../lib/filters/escape');
+import { expect } from 'jsr:@std/expect';
+import { beforeEach, describe, test } from 'jsr:@std/testing/bdd'
+import Escape from '../../lib/filters/escape.js';
 
 describe('Escape', function() {
 
