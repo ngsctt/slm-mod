@@ -4,7 +4,7 @@ import Filter from '../../lib/html/fast.js';
 
 describe('Fast', function() {
 
-  var filter;
+  let filter;
 
   beforeEach(function() {
     filter = new Filter();

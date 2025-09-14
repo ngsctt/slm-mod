@@ -4,7 +4,7 @@ import Escape from '../../lib/filters/escape.js';
 
 describe('Escape', function() {
 
-  var filter;
+  let filter;
 
   beforeEach(function() {
     filter = new Escape();
@@ -37,7 +37,7 @@ describe('Escape', function() {
   });
 
   test('use htmlSafe flag', function() {
-    var src = new String('a < b');
+    const src = new String('a < b');
     src.htmlSafe = true;
     expect(
       filter.exec(['escape', true, ['static', src]])

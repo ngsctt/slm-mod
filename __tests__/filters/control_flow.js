@@ -4,7 +4,7 @@ import ControlFlow from '../../lib/filters/control_flow.js';
 
 describe('ControlFlow', function() {
 
-  var filter;
+  let filter;
 
   beforeEach(function() {
     filter = new ControlFlow();

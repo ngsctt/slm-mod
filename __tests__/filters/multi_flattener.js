@@ -4,7 +4,7 @@ import MultiFlattener from '../../lib/filters/multi_flattener.js';
 
 describe('MultiFlattener', function() {
 
-  var filter;
+  let filter;
 
   beforeEach(function() {
     filter = new MultiFlattener();

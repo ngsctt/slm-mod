@@ -4,7 +4,7 @@ import Brackets from '../../lib/filters/brackets.js';
 
 describe('Brackets', function() {
 
-  var filter;
+  let filter;
 
   beforeEach(function() {
     filter = new Brackets();

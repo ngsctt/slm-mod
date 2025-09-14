@@ -4,7 +4,7 @@ import VM from '../lib/vm.js';
 
 describe('VM', function() {
 
-  var vm = new VM();
+  const vm = new VM();
 
   test('.rejectEmpty()', function() {
     expect(vm.rejectEmpty(['a', null, 'b', '', 'c'])).toEqual(['a', 'b', 'c']);

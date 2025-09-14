@@ -7,8 +7,8 @@ export function assertHtml(template, src, result, options) {
     src = src.join('\n');
   }
 
-  var env = {};
-  var context = {
+  const env = {};
+  const context = {
     items: [1,2,3],
     idHelper: 'notice',
     outputNumber: 1337,
@@ -38,12 +38,13 @@ export function assertHtml(template, src, result, options) {
           return env[''];
         case 1:
           return env[arguments[0]];
-        case 2:
-          var arg = arguments[0];
+        case 2: {
+          const arg = arguments[0];
           if (!arg) {
             return arguments[1]();
           }
           return env[arg] || arguments[1]();
+        }
       }
     },
     evilMethod: function() {
@@ -55,7 +56,7 @@ export function assertHtml(template, src, result, options) {
 
 export function assertSyntaxError(template, src, result, options) {
   src = src.join('\n');
-  var context = {
+  const context = {
     idHelper: 'notice',
     outputNumber: 1337,
     helloWorld: 'Hello World from @env',

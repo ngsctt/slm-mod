@@ -4,7 +4,7 @@ import StaticMerger from '../../lib/filters/static_merger.js';
 
 describe('StaticMerger', function() {
 
-  var filter;
+  let filter;
 
   beforeEach(function() {
     filter = new StaticMerger();

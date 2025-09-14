@@ -5,8 +5,8 @@ import VMBrowser from '../../lib/vm_browser.js';
 import { assertHtml } from '../helper.js';
 
 describe('Html attribtues', function() {
-  var template;
-  var htmlTemplate;
+  let template;
+  let htmlTemplate;
 
   beforeEach(function() {
     template = new Template(VMBrowser);

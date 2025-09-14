@@ -3,7 +3,7 @@ import { beforeEach, describe, test } from 'jsr:@std/testing/bdd'
 import Generator from '../../lib/generators/string.js';
 
 describe('String generator', function() {
-  var generator = null;
+  let generator = null;
 
   beforeEach(function() {
     generator = new Generator();

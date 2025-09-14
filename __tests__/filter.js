@@ -54,14 +54,14 @@ describe('Filter', function() {
     return ['on_zero'].concat(args);
   };
 
-  var filter;
+  let filter;
 
   beforeEach(function() {
     filter = new TestFilter();
   });
 
   test('#dispatchedMethods', function() {
-    var filter = new Filter();
+    const filter = new Filter();
     expect(filter._dispatchedMethods()).toEqual(
       [ 'on_multi',
         'on_capture',
@@ -71,7 +71,7 @@ describe('Filter', function() {
         'on_escape' ]
     );
 
-    var filterWithOnA = new FilterWithOnA();
+    const filterWithOnA = new FilterWithOnA();
 
     expect(filterWithOnA._dispatchedMethods()).toEqual(
       [ 'on_a',

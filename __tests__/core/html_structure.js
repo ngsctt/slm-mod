@@ -6,7 +6,7 @@ import { assertHtml } from '../helper.js';
 
 describe('Html structure', function() {
 
-  var template;
+  let template;
 
   beforeEach(function() {
     template = new Template(VMBrowser);

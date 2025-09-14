@@ -5,7 +5,7 @@ import VMBrowser from '../../lib/vm_browser.js';
 import { assertHtml } from '../helper.js';
 
 describe('Code structure', function() {
-  var template;
+  let template;
 
   beforeEach(function() { template = new Template(VMBrowser); });
 
@@ -191,7 +191,7 @@ describe('Code structure', function() {
   });
 
   test('detects missing brace', function() {
-    var src = [
+    let src = [
       '= this.block)',
       '  p Block',
       'p After'
@@ -334,7 +334,7 @@ describe('Code structure', function() {
   test('render with for', function() {
     assertHtml(template, [
       'ul',
-      '  - for var item in this.items',
+      '  - for let item in this.items',
       '    li = item'
     ],
     '<ul><li>0</li><li>1</li><li>2</li></ul>',

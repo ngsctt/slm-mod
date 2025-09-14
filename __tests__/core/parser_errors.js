@@ -5,7 +5,7 @@ import { assertHtml, assertSyntaxError } from '../helper.js';
 
 describe('Parser errors', function() {
 
-  var template;
+  let template;
 
   beforeEach(function() { template = new Template(VMBrowser); });
 
