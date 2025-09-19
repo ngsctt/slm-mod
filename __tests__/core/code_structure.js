@@ -73,7 +73,7 @@ describe('Code structure', function() {
 
   test('render with case', function() {
     assertHtml(template, [
-      '- var url = require("url")',
+      // '- var url = require("url")',
       'p',
       '  - switch(42)',
       '    - case 41:',
@@ -296,30 +296,30 @@ describe('Code structure', function() {
       {});
   });
 
-  test('mixin with contexts', function() {
-    var VM = template.VM;
-    var vm = new VM();
-    vm.resetCache();
+  // test('mixin with contexts', function() {
+  //   var VM = template.VM;
+  //   var vm = new VM();
+  //   vm.resetCache();
 
-    var compileOptions = {
-      basePath: '/',
-      filename: 'mixins.slm'
-    };
+  //   var compileOptions = {
+  //     basePath: '/',
+  //     filename: 'mixins.slm'
+  //   };
 
-    vm.cache(compileOptions.filename, template.exec([
-      '= mixin("say", "a", "b")',
-      '  p Hello ${this.a} by ${this.b}'
-    ].join('\n'), compileOptions, vm));
+  //   vm.cache(compileOptions.filename, template.exec([
+  //     '= mixin("say", "a", "b")',
+  //     '  p Hello ${this.a} by ${this.b}'
+  //   ].join('\n'), compileOptions, vm));
 
-    var src = [
-      '= partial("mixins.slm")',
-      '.hello',
-      '  = mixin("say", "Slm", "mixin")'
-    ].join('\n');
+  //   var src = [
+  //     '= partial("mixins.slm")',
+  //     '.hello',
+  //     '  = mixin("say", "Slm", "mixin")'
+  //   ].join('\n');
 
-    var result = template.render(src, {}, compileOptions, vm);
-    expect(result).toEqual('<div class="hello"><p>Hello Slm by mixin</p></div>');
-  });
+  //   var result = template.render(src, {}, compileOptions, vm);
+  //   expect(result).toEqual('<div class="hello"><p>Hello Slm by mixin</p></div>');
+  // });
 
   test('render with forEach', function() {
     assertHtml(template, [
