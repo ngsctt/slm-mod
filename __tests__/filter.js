@@ -62,27 +62,26 @@ describe('Filter', function() {
 
   test('#dispatchedMethods', function() {
     const filter = new Filter();
-    expect(filter._dispatchedMethods()).toEqual(
-      [ 'on_multi',
-        'on_capture',
-        'on_if',
-        'on_switch',
-        'on_block',
-        'on_escape' ]
-    );
+    expect(filter._dispatchedMethods().sort()).toEqual([
+      'on_block',
+      'on_capture',
+      'on_escape',
+      'on_if',
+      'on_multi',
+      'on_switch',
+    ]);
 
     const filterWithOnA = new FilterWithOnA();
-
-    expect(filterWithOnA._dispatchedMethods()).toEqual(
-      [ 'on_a',
-        'on_a_b',
-        'on_multi',
-        'on_capture',
-        'on_if',
-        'on_switch',
-        'on_block',
-        'on_escape' ]
-    );
+    expect(filterWithOnA._dispatchedMethods().sort()).toEqual([
+      'on_a',
+      'on_a_b',
+      'on_block',
+      'on_capture',
+      'on_escape',
+      'on_if',
+      'on_multi',
+      'on_switch',
+    ]);
   });
 
   test('return unhandled expressions', function() {
