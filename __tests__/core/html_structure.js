@@ -537,82 +537,82 @@ describe('Html structure', function() {
     {});
   });
 
-  // test('test context', function() {
-  //   var VM = template.VM;
-  //   var vm = new VM();
-  //   vm.resetCache();
+  test('test context', function() {
+    const VM = template.VM;
+    const vm = new VM();
+    vm.resetCache();
 
-  //   var compileOptions = {
-  //     basePath: '/',
-  //     filename: '/layout.slm'
-  //   };
+    const compileOptions = {
+      basePath: '/',
+      filename: 'layout'
+    };
 
-  //   vm.cache(compileOptions.filename, template.exec([
-  //     'html',
-  //     '  head',
-  //     '    = content("head")',
-  //     '  body',
-  //     '    = content()'
-  //   ].join('\n'), compileOptions, vm));
+    vm.cache(compileOptions.filename, template.exec([
+      'html',
+      '  head',
+      '    = content("head")',
+      '  body',
+      '    = content()'
+    ].join('\n'), compileOptions, vm));
 
-  //   compileOptions.filename = '/partialLayout.slm';
-  //   vm.cache(compileOptions.filename, template.exec([
-  //     'p Partial Layout',
-  //     '= content()'
-  //   ].join('\n'), compileOptions, vm));
+    compileOptions.filename = 'partialLayout';
+    vm.cache(compileOptions.filename, template.exec([
+      'p Partial Layout',
+      '= content()'
+    ].join('\n'), compileOptions, vm));
 
-  //   compileOptions.filename = '/partialWorld.slm';
-  //   vm.cache(compileOptions.filename, template.exec([
-  //     '- extend("partialLayout")',
-  //     '- if this.what',
-  //     '  strong The partial is ${this.what}',
-  //     '= content("partial.override")',
-  //     '= content()'
-  //   ].join('\n'), compileOptions, vm));
-
-
-  //   compileOptions.filename = '/script';
-
-  //   var src = [
-  //     '- extend("layout")',
-  //     '= content("head")',
-  //     '  meta name="keywords" content=this.who',
-  //     'p Hello, ${this.who}',
-  //     '= partial("partial" + this.who, {what: this.what})',
-  //     '  = content("partial.override")',
-  //     '    p nice',
-  //     '  strong super!!! ${this.who}'
-  //   ].join('\n');
+    compileOptions.filename = 'partialWorld';
+    vm.cache(compileOptions.filename, template.exec([
+      '- extend("partialLayout")',
+      '- if this.what',
+      '  strong The partial is ${this.what}',
+      '= content("partial.override")',
+      '= content()'
+    ].join('\n'), compileOptions, vm));
 
 
-  //   var result = template.render(src, {who: 'World', what: 'the best'}, compileOptions, vm);
-  //   expect(result).toEqual('<html><head><meta content="World" name="keywords" /></head><body><p>Hello, World</p><p>Partial Layout</p><strong>The partial is the best</strong><p>nice</p><strong>super!!! World</strong></body></html>');
-  // });
+    compileOptions.filename = '/script';
 
-  // test('test current context in partials by default', function() {
-  //   var VM = template.VM;
-  //   var vm = new VM();
-  //   vm.resetCache();
-
-  //   var compileOptions = {
-  //     basePath: '/',
-  //     filename: '/a.slm'
-  //   };
-
-  //   vm.cache(compileOptions.filename, template.exec([
-  //     'p Partial ${this.who}',
-  //   ].join('\n'), compileOptions, vm));
+    const src = [
+      '- extend("layout")',
+      '= content("head")',
+      '  meta name="keywords" content=this.who',
+      'p Hello, ${this.who}',
+      '= partial("partial" + this.who, {what: this.what})',
+      '  = content("partial.override")',
+      '    p nice',
+      '  strong super!!! ${this.who}'
+    ].join('\n');
 
 
-  //   var src = [
-  //     'p Current ${this.who}',
-  //     '= partial("a")',
-  //     '- this.who = "Another"',
-  //     'p Current ${this.who}',
-  //     '= partial("a")',
-  //   ].join('\n');
+    const result = template.render(src, {who: 'World', what: 'the best'}, compileOptions, vm);
+    expect(result).toEqual('<html><head><meta content="World" name="keywords" /></head><body><p>Hello, World</p><p>Partial Layout</p><strong>The partial is the best</strong><p>nice</p><strong>super!!! World</strong></body></html>');
+  });
 
-  //   var result = template.render(src, {who: 'World', what: 'the best'}, compileOptions, vm);
-  //   expect(result).toEqual('<p>Current World</p><p>Partial World</p><p>Current Another</p><p>Partial Another</p>');
-  // });
+  test('test current context in partials by default', function() {
+    const VM = template.VM;
+    const vm = new VM();
+    vm.resetCache();
+
+    const compileOptions = {
+      basePath: '/',
+      filename: 'a'
+    };
+
+    vm.cache(compileOptions.filename, template.exec([
+      'p Partial ${this.who}',
+    ].join('\n'), compileOptions, vm));
+
+
+    const src = [
+      'p Current ${this.who}',
+      '= partial("a")',
+      '- this.who = "Another"',
+      'p Current ${this.who}',
+      '= partial("a")',
+    ].join('\n');
+
+    const result = template.render(src, {who: 'World', what: 'the best'}, compileOptions, vm);
+    expect(result).toEqual('<p>Current World</p><p>Partial World</p><p>Current Another</p><p>Partial Another</p>');
+  });
 });
