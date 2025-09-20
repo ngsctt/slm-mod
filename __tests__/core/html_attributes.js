@@ -1,7 +1,7 @@
 import { expect } from 'jsr:@std/expect';
 import { beforeEach, describe, test } from 'jsr:@std/testing/bdd'
 import Template from '../../lib/template.js';
-import VMBrowser from '../../lib/vm_browser.js';
+import VM from '../../lib/vm.js';
 import { assertHtml } from '../helper.js';
 
 describe('Html attribtues', function() {
@@ -9,8 +9,8 @@ describe('Html attribtues', function() {
   let htmlTemplate;
 
   beforeEach(function() {
-    template = new Template(VMBrowser);
-    htmlTemplate = new Template(VMBrowser, {mergeAttrs: { 'class': ' ' }, attrDelims: { '(': ')' },  format: 'html' });
+    template = new Template(VM);
+    htmlTemplate = new Template(VM, {mergeAttrs: { 'class': ' ' }, attrDelims: { '(': ')' },  format: 'html' });
   });
 
   test('vue syntax 1', function() {
@@ -86,7 +86,7 @@ describe('Html attribtues', function() {
   });
 
   test('id attribute merging', function() {
-    const tmpl = new Template(VMBrowser, {mergeAttrs: {'id': '-'}});
+    const tmpl = new Template(VM, {mergeAttrs: {'id': '-'}});
     assertHtml(tmpl, [
       '#alpha id="beta" Test it'
       ],
@@ -105,7 +105,7 @@ describe('Html attribtues', function() {
   });
 
   test('id attribute merging with array', function() {
-    const tmpl = new Template(VMBrowser, {mergeAttrs: {'id': '_'}});
+    const tmpl = new Template(VM, {mergeAttrs: {'id': '_'}});
     assertHtml(tmpl, [
       '#alpha id=["beta", "gamma"] Test it'
       ],

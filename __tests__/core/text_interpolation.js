@@ -1,12 +1,12 @@
 import { beforeEach, describe, test } from 'jsr:@std/testing/bdd'
 import Template from '../../lib/template.js';
-import VMBrowser from '../../lib/vm_browser.js';
+import VM from '../../lib/vm.js';
 import { assertHtml } from '../helper.js';
 
 describe('Text interpolation', function() {
   let template;
   beforeEach(function() {
-    template = new Template(VMBrowser);
+    template = new Template(VM);
   });
 
   test('interpolation in attribute', function() {

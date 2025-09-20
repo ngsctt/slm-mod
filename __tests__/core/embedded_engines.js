@@ -1,14 +1,14 @@
 import { expect } from 'jsr:@std/expect';
 import { describe, beforeEach, test } from 'jsr:@std/testing/bdd'
 import Template from '../../lib/template.js';
-import VMBrowser from '../../lib/vm_browser.js';
+import VM from '../../lib/vm.js';
 import { assertHtml } from '../helper.js';
 
 describe('Embedded engines', function() {
   let template;
 
   beforeEach(function() {
-    template = new Template(VMBrowser);
+    template = new Template(VM);
     template.registerEmbeddedFunction('customEngine', function(body) {
       return '<pre>' + body + '</pre>';
     });

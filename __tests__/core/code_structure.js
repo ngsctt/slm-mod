@@ -1,13 +1,13 @@
 import { expect } from 'jsr:@std/expect';
 import { beforeEach, describe, test } from 'jsr:@std/testing/bdd'
 import Template from '../../lib/template.js';
-import VMBrowser from '../../lib/vm_browser.js';
+import VM from '../../lib/vm.js';
 import { assertHtml } from '../helper.js';
 
 describe('Code structure', function() {
   let template;
 
-  beforeEach(function() { template = new Template(VMBrowser); });
+  beforeEach(function() { template = new Template(VM); });
 
   test('render with conditional', function() {
     assertHtml(template, [
