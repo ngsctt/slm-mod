@@ -2,4 +2,5 @@ import Template from './lib/template.js';
 import VM from './lib/vm.js';
 
 const template = new Template(VM);
-export default { ...template.exports() };
+const { compile, render } = template.exports();
+export { Template, template, compile, render };
