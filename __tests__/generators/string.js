@@ -9,7 +9,7 @@ describe('String generator', function() {
     generator = new Generator();
   });
 
-  test('compiles simple expressions', function() {
+  test('1. compiles simple expressions', function() {
     expect(generator.exec(['static', 'test'])).toEqual(
       'var _b=\'\';_b+="test";',
     );
@@ -17,7 +17,7 @@ describe('String generator', function() {
     expect(generator.exec(['code', 'test'])).toEqual("var _b='';test");
   });
 
-  test('compiles multi expression', function() {
+  test('2. compiles multi expression', function() {
     expect(
       generator.exec([
         'multi',
@@ -28,7 +28,7 @@ describe('String generator', function() {
     ).toEqual('var _b=\'\';_b+="static";\n_b+=dynamic;\ncode');
   });
 
-  test('throws an error on unknown expression', function() {
+  test('3. throws an error on unknown expression', function() {
     expect(function() {
       generator.exec(['multi', ['unknown', 'static'], ['code', 'code']]);
     }).toThrow(

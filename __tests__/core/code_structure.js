@@ -9,7 +9,7 @@ describe('Code structure', function() {
 
   beforeEach(function() { template = new Template(VM); });
 
-  test('render with conditional', function() {
+  test('1. render with conditional', function() {
     assertHtml(template, [
       'div',
       '  - if this.showFirst()',
@@ -21,7 +21,7 @@ describe('Code structure', function() {
       {});
   });
 
-  test('render with conditional else if', function() {
+  test('2. render with conditional else if', function() {
     assertHtml(template, [
       'div',
       '  - if this.showFirst()',
@@ -35,7 +35,7 @@ describe('Code structure', function() {
       {});
   });
 
-  test('render with consecutive conditionals', function() {
+  test('3. render with consecutive conditionals', function() {
     assertHtml(template, [
       'div',
       '  - if this.showFirst(true)',
@@ -47,7 +47,7 @@ describe('Code structure', function() {
       {});
   });
 
-  test('render with when string in condition', function() {
+  test('4. render with when string in condition', function() {
     assertHtml(template, [
       '- if true',
       '  | Hello',
@@ -59,7 +59,7 @@ describe('Code structure', function() {
       {});
   });
 
-  test('render with conditional and following nonconditonal', function() {
+  test('5. render with conditional and following nonconditonal', function() {
     assertHtml(template, [
       'div',
       '  - if true',
@@ -71,7 +71,7 @@ describe('Code structure', function() {
       {});
   });
 
-  test('render with case', function() {
+  test('6. render with case', function() {
     assertHtml(template, [
       'p',
       '  - switch(42)',
@@ -114,7 +114,7 @@ describe('Code structure', function() {
       {});
   });
 
-  test('render with slm comments', function() {
+  test('7. render with slm comments', function() {
     assertHtml(template, [
       'p Hello',
       '/ This is a comment',
@@ -125,7 +125,7 @@ describe('Code structure', function() {
       {});
   });
 
-  test('render with slm comments and empty line', function() {
+  test('8. render with slm comments and empty line', function() {
     assertHtml(template, [
       'p Hello',
       '/ This is a comment',
@@ -137,7 +137,7 @@ describe('Code structure', function() {
       {});
   });
 
-  test('render with try catch', function() {
+  test('9. render with try catch', function() {
     assertHtml(template, [
       '- try',
       '  p Try',
@@ -149,7 +149,7 @@ describe('Code structure', function() {
       {});
   });
 
-  test('render with try catch exception', function() {
+  test('10. render with try catch exception', function() {
     assertHtml(template, [
       '- try',
       '  p Try',
@@ -163,7 +163,7 @@ describe('Code structure', function() {
       {});
   });
 
-  test('render with try catch finally', function() {
+  test('11. render with try catch finally', function() {
     assertHtml(template, [
       '- try',
       '  p Try',
@@ -179,7 +179,7 @@ describe('Code structure', function() {
       {});
   });
 
-  test('injects callback arg', function() {
+  test('12. injects callback arg', function() {
     assertHtml(template, [
       '= this.block()',
       '  p Block',
@@ -189,7 +189,7 @@ describe('Code structure', function() {
       {});
   });
 
-  test('detects missing brace', function() {
+  test('13. detects missing brace', function() {
     let src = [
       '= this.block)',
       '  p Block',
@@ -200,7 +200,7 @@ describe('Code structure', function() {
     }).toThrow('Missing open brace \"(\" in `this.block)`');
   });
 
-  test('content', function() {
+  test('14. content', function() {
     assertHtml(template, [
       '= content()',
       'p After 1',
@@ -220,7 +220,7 @@ describe('Code structure', function() {
       {});
   });
 
-  test('simple mixin', function() {
+  test('15. simple mixin', function() {
     assertHtml(template, [
       '= mixin("say", "a", "b")',
       '  p Hello ${this.a} by ${this.b}',
@@ -231,7 +231,7 @@ describe('Code structure', function() {
       {});
   });
 
-  test('mixin with loop', function() {
+  test('16. mixin with loop', function() {
     assertHtml(template, [
       '= mixin("say", "list")',
       '  ul',
@@ -244,7 +244,8 @@ describe('Code structure', function() {
       {});
   });
 
-  test('mixin with content', function() {
+  test('17. second simple mixin', function() {
+    // Previously 'mixin with content'
     assertHtml(template, [
       '= content("myContent")',
       '  p Hello from mixin!',
@@ -261,7 +262,7 @@ describe('Code structure', function() {
       {});
   });
 
-  test('mixin with all defaults values', function() {
+  test('18. mixin with all defaults values', function() {
     assertHtml(template, [
       '= mixin("say", "a = Slm", "b = mixin")',
       '  p Hello ${this.a} by ${this.b}',
@@ -273,7 +274,7 @@ describe('Code structure', function() {
   });
 
 
-  test('mixin with first default value', function() {
+  test('19. mixin with first default value', function() {
     assertHtml(template, [
       '= mixin("say", "a = Slm", "b")',
       '  p Hello ${this.a} by ${this.b}',
@@ -284,7 +285,7 @@ describe('Code structure', function() {
       {});
   });
 
-  test('mixin with second default value', function() {
+  test('20. mixin with second default value', function() {
     assertHtml(template, [
       '= mixin("say", "a", "b= mixin")',
       '  p Hello ${this.a} by ${this.b}',
@@ -295,7 +296,7 @@ describe('Code structure', function() {
       {});
   });
 
-  test('mixin with contexts', function() {
+  test('21. mixin with contexts', function() {
     const VM = template.VM;
     const vm = new VM();
     vm.resetCache();
@@ -320,7 +321,7 @@ describe('Code structure', function() {
     expect(result).toEqual('<div class="hello"><p>Hello Slm by mixin</p></div>');
   });
 
-  test('render with forEach', function() {
+  test('22. render with forEach', function() {
     assertHtml(template, [
       'div',
       '  - this.items.forEach(function(i))',
@@ -330,7 +331,7 @@ describe('Code structure', function() {
       {});
   });
 
-  test('render with for', function() {
+  test('23. render with for', function() {
     assertHtml(template, [
       'ul',
       '  - for let item in this.items',
@@ -340,7 +341,7 @@ describe('Code structure', function() {
     {});
   });
 
-  test('render with multiline attributes', function() {
+  test('24. render with multiline attributes', function() {
     assertHtml(template, [
       'div class="test\\',
       '    nice"'
@@ -356,7 +357,7 @@ describe('Code structure', function() {
       {});
   });
 
-  test('render with multiline attributes', function() {
+  test('25. render with multiline attributes', function() {
     assertHtml(template, [
       'div class=(1 + \\',
       '  2)'

@@ -10,7 +10,7 @@ describe('ControlFlow', function() {
     filter = new ControlFlow();
   });
 
-  test('should process blocks', function(){
+  test('1. should process blocks', function(){
     expect(
       filter.exec(['block', 'while (true)', ['static', 'Hello']])
     ).toEqual(
@@ -21,7 +21,7 @@ describe('ControlFlow', function() {
     );
   });
 
-  test('should process if', function(){
+  test('2. should process if', function(){
     expect(
       filter.exec(['if', 'condition', ['static', 'Hello']])
     ).toEqual(
@@ -33,7 +33,7 @@ describe('ControlFlow', function() {
     );
   });
 
-  test('should process if with else', function(){
+  test('3. should process if with else', function(){
     expect(
       filter.exec(['if', 'condition', ['static', 'True'], ['static', 'False']])
     ).toEqual(

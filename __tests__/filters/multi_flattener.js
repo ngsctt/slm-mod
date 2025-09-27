@@ -10,7 +10,7 @@ describe('MultiFlattener', function() {
     filter = new MultiFlattener();
   });
 
-  test('flatten nested multi expressions', function() {
+  test('1. flatten nested multi expressions', function() {
     expect(
       filter.exec(
         [

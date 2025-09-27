@@ -6,11 +6,11 @@ describe('VM', function() {
 
   const vm = new VM();
 
-  test('.rejectEmpty()', function() {
+  test('1. .rejectEmpty()', function() {
     expect(vm.rejectEmpty(['a', null, 'b', '', 'c'])).toEqual(['a', 'b', 'c']);
   });
 
-  test('.flatten()', function() {
+  test('2. .flatten()', function() {
     expect(vm.flatten([1, [2, 3], [4, [5, [6, 7]]]]))
     .toEqual(['1', '2', '3', '4', '5', '6', '7']);
 
@@ -21,7 +21,7 @@ describe('VM', function() {
     .toEqual(['1', '2', '3', '4', '5', '6']);
   });
 
-  test('.escape()', function() {
+  test('3. .escape()', function() {
     expect(vm.escape()).toEqual('');
     expect(vm.escape(null)).toEqual('');
     expect(vm.escape(' ')).toEqual(' ');
@@ -33,7 +33,7 @@ describe('VM', function() {
       .toEqual('&lt;javascript&gt;alert(&quot;alert!&quot;)&lt;/javascript&gt;');
   });
 
-  test('.safe()', function() {
+  test('4. .safe()', function() {
     expect(vm.escape(vm.safe('<javascript>alert("alert!")</javascript>'))).toEqual('<javascript>alert("alert!")</javascript>');
     expect(vm.escape(vm.safe(''))).toEqual('');
     expect(vm.escape(vm.safe())).toEqual('');

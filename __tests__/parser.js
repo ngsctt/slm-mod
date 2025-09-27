@@ -5,7 +5,7 @@ import Parser from '../lib/parser.js';
 
 describe('Parser', function() {
 
-  test('._getIndent()', function() {
+  test('1. ._getIndent()', function() {
     const parser = new Parser();
 
     expect(parser._getIndent(' ')).toEqual(1);
@@ -17,7 +17,7 @@ describe('Parser', function() {
 
   });
 
-  test('.exec()', function() {
+  test('2. .exec()', function() {
     const parser = new Parser();
 
     expect(parser.exec(' ')).toEqual([ 'multi', [ 'newline' ] ]);

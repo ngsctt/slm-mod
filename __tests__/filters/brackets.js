@@ -10,7 +10,7 @@ describe('Brackets', function() {
     filter = new Brackets();
   });
 
-  test('wraps if statement', function() {
+  test('1. wraps if statement', function() {
     expect(
       filter.exec(['multi', ['slm', 'control', 'if this.x > 0',
                       ['multi',
@@ -31,7 +31,7 @@ describe('Brackets', function() {
     );
   });
 
-  test('wraps if statement with spaces', function() {
+  test('2. wraps if statement with spaces', function() {
     expect(
       filter.exec(['multi', ['slm', 'control', 'if   this.x > 0  ',
                       ['multi', ['newline'],
@@ -50,7 +50,7 @@ describe('Brackets', function() {
     );
   });
 
-  test('not wraps wrapped if statement', function() {
+  test('3. not wraps wrapped if statement', function() {
     expect(
       filter.exec(['multi', ['slm', 'control', 'if (this.x > 0)',
                       ['multi', ['newline'],
@@ -69,7 +69,7 @@ describe('Brackets', function() {
     );
   });
 
-  test('wraps if and else statements', function() {
+  test('4. wraps if and else statements', function() {
     expect(
       filter.exec(['multi',
                     ['slm', 'control', 'if this.x > 0',
@@ -101,7 +101,7 @@ describe('Brackets', function() {
     );
   });
 
-  test('wraps for loop', function() {
+  test('5. wraps for loop', function() {
     expect(
       filter.exec(['multi', ['slm', 'control', 'for i = 0; i < items.length; i++',
                       ['multi', ['newline'],
@@ -120,7 +120,7 @@ describe('Brackets', function() {
     );
   });
 
-  test('wraps while loop', function() {
+  test('6. wraps while loop', function() {
     expect(
       filter.exec(['multi', ['slm', 'control', 'while i < 10',
                       ['multi', ['newline'],

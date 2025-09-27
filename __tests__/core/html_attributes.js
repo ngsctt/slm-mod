@@ -13,7 +13,7 @@ describe('Html attribtues', function() {
     htmlTemplate = new Template(VM, {mergeAttrs: { 'class': ' ' }, attrDelims: { '(': ')' },  format: 'html' });
   });
 
-  test('vue syntax 1', function() {
+  test('1. vue syntax 1', function() {
     assertHtml(template, [
       'form @submit.prevent="createdProject"'
       ],
@@ -21,7 +21,7 @@ describe('Html attribtues', function() {
       {});
   });
 
-  test('vue syntax 2', function() {
+  test('2. vue syntax 2', function() {
     assertHtml(template, [
       'form(@submit.prevent="createdProject")'
       ],
@@ -29,7 +29,7 @@ describe('Html attribtues', function() {
       {});
   });
 
-  test('vue syntax 3', function() {
+  test('3. vue syntax 3', function() {
     assertHtml(template, [
       'form v-on:submit="something"'
       ],
@@ -37,7 +37,7 @@ describe('Html attribtues', function() {
       {});
   });
 
-  test('vue syntax 4', function() {
+  test('4. vue syntax 4', function() {
     assertHtml(template, [
       'form Hello.'
       ],
@@ -45,7 +45,7 @@ describe('Html attribtues', function() {
       {});
   });
 
-  test('ternary operation in attribute', function() {
+  test('5. ternary operation in attribute', function() {
     assertHtml(template, [
       'p id="${(false ? \'notshown\' : \'shown\')}" = this.outputNumber'
       ],
@@ -53,7 +53,7 @@ describe('Html attribtues', function() {
       {});
   });
 
-  test('ternary operation in attribute 2', function() {
+  test('6. ternary operation in attribute 2', function() {
     assertHtml(template, [
       'p id=(false ? \'notshown\' : \'shown\') = this.outputNumber'
       ],
@@ -61,7 +61,7 @@ describe('Html attribtues', function() {
       {});
   });
 
-  test('class attribute merging', function() {
+  test('7. class attribute merging', function() {
     assertHtml(template, [
       '.alpha class="beta" test it'
       ],
@@ -69,7 +69,7 @@ describe('Html attribtues', function() {
       {});
   });
 
-  test('class attribute merging with null', function() {
+  test('8. class attribute merging with null', function() {
     assertHtml(template, [
       '.alpha class="beta" class=null class="gamma" test it'
       ],
@@ -77,7 +77,7 @@ describe('Html attribtues', function() {
       {});
   });
 
-  test('class attribute merging with empty static', function() {
+  test('9. class attribute merging with empty static', function() {
     assertHtml(template, [
       '.alpha class="beta" class="" class="gamma" Test it'
       ],
@@ -85,7 +85,7 @@ describe('Html attribtues', function() {
       {});
   });
 
-  test('id attribute merging', function() {
+  test('10. id attribute merging', function() {
     const tmpl = new Template(VM, {mergeAttrs: {'id': '-'}});
     assertHtml(tmpl, [
       '#alpha id="beta" Test it'
@@ -94,7 +94,7 @@ describe('Html attribtues', function() {
       {});
   });
 
-  test('throws multiple id merge by default', function() {
+  test('11. throws multiple id merge by default', function() {
     expect(function() {
       assertHtml(template, [
         '#alpha id="beta" Test it'
@@ -104,7 +104,7 @@ describe('Html attribtues', function() {
     }).toThrow('Multiple id attributes specified');
   });
 
-  test('id attribute merging with array', function() {
+  test('12. id attribute merging with array', function() {
     const tmpl = new Template(VM, {mergeAttrs: {'id': '_'}});
     assertHtml(tmpl, [
       '#alpha id=["beta", "gamma"] Test it'
@@ -113,7 +113,7 @@ describe('Html attribtues', function() {
       {});
   });
 
-  test('custom attribute delimiters', function() {
+  test('13. custom attribute delimiters', function() {
     assertHtml(htmlTemplate, [
       'div([value]="boundValue")',
       ],
@@ -121,7 +121,7 @@ describe('Html attribtues', function() {
       {});
   });
 
-  test('xhtml boolean attribute false', function() {
+  test('14. xhtml boolean attribute false', function() {
     assertHtml(template, [
       '- var cond = false',
       'option selected=false Text',
@@ -132,7 +132,7 @@ describe('Html attribtues', function() {
       {});
   });
 
-  test('html boolean attribute false', function() {
+  test('15. html boolean attribute false', function() {
     assertHtml(htmlTemplate, [
       '- var cond = false',
       'option selected=false Text',
@@ -143,7 +143,7 @@ describe('Html attribtues', function() {
       {});
   });
 
-  test('xhtml boolean attribute true', function() {
+  test('16. xhtml boolean attribute true', function() {
     assertHtml(template, [
       '- var cond = true',
       'option selected=true Text',
@@ -154,7 +154,7 @@ describe('Html attribtues', function() {
       {});
   });
 
-  test('html boolean attribute true', function() {
+  test('17. html boolean attribute true', function() {
     assertHtml(htmlTemplate, [
       '- var cond = true',
       'option selected=true Text',
@@ -165,7 +165,7 @@ describe('Html attribtues', function() {
       {});
   });
 
-  test('xhtml boolean attribute null', function() {
+  test('18. xhtml boolean attribute null', function() {
     assertHtml(template, [
       '- var cond = null',
       'option selected=null Text',
@@ -175,7 +175,7 @@ describe('Html attribtues', function() {
       {});
   });
 
-  test('html boolean attribute null', function() {
+  test('19. html boolean attribute null', function() {
     assertHtml(htmlTemplate, [
       '- var cond = null',
       'option selected=null Text',
@@ -185,7 +185,7 @@ describe('Html attribtues', function() {
       {});
   });
 
-  test('boolean attribute string2', function() {
+  test('20. boolean attribute string2', function() {
     assertHtml(template, [
       'option selected="selected" Text'
       ],
@@ -193,7 +193,7 @@ describe('Html attribtues', function() {
       {});
   });
 
-  test('xhtml boolean attribute shortcut', function() {
+  test('21. xhtml boolean attribute shortcut', function() {
     assertHtml(template, [
       'option(class="clazz" selected) Text',
       'option(selected class="clazz") Text'
@@ -202,7 +202,7 @@ describe('Html attribtues', function() {
       {});
   });
 
-  test('html boolean attribute shortcut', function() {
+  test('22. html boolean attribute shortcut', function() {
     assertHtml(htmlTemplate, [
       'option(class="clazz" selected) Text',
       'option(selected class="clazz") Text'
@@ -211,7 +211,7 @@ describe('Html attribtues', function() {
       {});
   });
 
-  test('array attribute merging', function() {
+  test('23. array attribute merging', function() {
     assertHtml(template, [
       '.alpha class="beta" class=[[""], "gamma", null, "delta", [true, false]]',
       '.alpha class=["beta","gamma"]'
@@ -220,7 +220,7 @@ describe('Html attribtues', function() {
       {});
   });
 
-  test('static empty attribute', function() {
+  test('24. static empty attribute', function() {
     assertHtml(template, [
       'p(id="marvin" name="" class="" data-info="Illudium Q-36")= this.outputNumber'
       ],
@@ -228,7 +228,7 @@ describe('Html attribtues', function() {
       {});
   });
 
-  test('dynamic empty attribute', function() {
+  test('25. dynamic empty attribute', function() {
     assertHtml(template, [
       'p(id="marvin" class=null nonempty=("".toString()) data-info="Illudium Q-36")= this.outputNumber'
       ],
@@ -236,7 +236,7 @@ describe('Html attribtues', function() {
       {});
   });
 
-  test('weird attribute', function() {
+  test('26. weird attribute', function() {
     assertHtml(template, [
       'p',
       '  img(src=\'img.png\' whatsthis?!)'

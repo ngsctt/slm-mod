@@ -9,7 +9,7 @@ describe('Code output', function() {
     template = new Template(VM);
   });
 
-  test('render with call', function() {
+  test('1. render with call', function() {
     assertHtml(template, [
       'p',
       '  = this.helloWorld'
@@ -18,7 +18,7 @@ describe('Code output', function() {
       {});
   });
 
-  test('render with trailing whitespace', function() {
+  test('2. render with trailing whitespace', function() {
     assertHtml(template, [
       'p',
       '  => this.helloWorld'
@@ -27,7 +27,7 @@ describe('Code output', function() {
       {});
   });
 
-  test('render with leading whitespace', function() {
+  test('3. render with leading whitespace', function() {
     assertHtml(template, [
       'p',
       '  =< this.helloWorld'
@@ -36,7 +36,7 @@ describe('Code output', function() {
       {});
   });
 
-  test('render with trailing whitespace after tag', function() {
+  test('4. render with trailing whitespace after tag', function() {
     assertHtml(template, [
       'p=> this.helloWorld'
       ],
@@ -44,7 +44,7 @@ describe('Code output', function() {
       {});
   });
 
-  test('no escape render with trailing whitespace', function() {
+  test('5. no escape render with trailing whitespace', function() {
     assertHtml(template, [
       'p',
       '  ==> this.helloWorld'
@@ -53,7 +53,7 @@ describe('Code output', function() {
       {});
   });
 
-  test('no escape render with trailing whitespace after tag', function() {
+  test('6. no escape render with trailing whitespace after tag', function() {
     assertHtml(template, [
       'p==> this.helloWorld'
       ],
@@ -61,7 +61,7 @@ describe('Code output', function() {
       {});
   });
 
-  test('no escape render with trailing whitespace after tag', function() {
+  test('7. no escape render with trailing whitespace after tag', function() {
     assertHtml(template, [
       'p==> this.helloWorld'
       ],
@@ -69,7 +69,7 @@ describe('Code output', function() {
       {});
   });
 
-  test('render with backslash end', function() {
+  test('8. render with backslash end', function() {
     assertHtml(template, [
       'p = \\',
       '"Hello" + \\',
@@ -84,7 +84,7 @@ describe('Code output', function() {
       {});
   });
 
-  test('render multi line code', function() {
+  test('9. render multi line code', function() {
     assertHtml(template, [
       '-  var niceX = function(x) {',
       '-     return x + \'nice\';',
@@ -95,7 +95,7 @@ describe('Code output', function() {
       {});
   });
 
-  test('render with comma end', function() {
+  test('10. render with comma end', function() {
     assertHtml(template, [
       'p = this.message("Hello",',
       '                 "JS!")'

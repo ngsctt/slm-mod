@@ -9,7 +9,7 @@ describe('Text interpolation', function() {
     template = new Template(VM);
   });
 
-  test('interpolation in attribute', function() {
+  test('1. interpolation in attribute', function() {
     assertHtml(template, [
       'p id="a${this.idHelper}b" = this.helloWorld'
       ],
@@ -17,7 +17,7 @@ describe('Text interpolation', function() {
       {});
   });
 
-  test('nested interpolation in attribute', function() {
+  test('2. nested interpolation in attribute', function() {
     assertHtml(template, [
       'p id="${"abc${1+1}" + "("}" = this.helloWorld'
       ],
@@ -25,7 +25,7 @@ describe('Text interpolation', function() {
       {});
   });
 
-  test('expression in interpolation', function() {
+  test('3. expression in interpolation', function() {
     assertHtml(template, [
       'p ${this.helloWorld2 || "test"} other text',
       ],
@@ -33,7 +33,7 @@ describe('Text interpolation', function() {
       {});
   });
 
-  test('interpolation in text', function() {
+  test('4. interpolation in text', function() {
     assertHtml(template, [
       'p',
       ' | ${this.helloWorld} with "quotes"',
@@ -45,7 +45,7 @@ describe('Text interpolation', function() {
       {});
   });
 
-  test('interpolation in tag', function() {
+  test('5. interpolation in tag', function() {
     assertHtml(template, [
       'p ${this.helloWorld}'
       ],
@@ -53,7 +53,7 @@ describe('Text interpolation', function() {
       {});
   });
 
-  test('escape interpolation', function() {
+  test('6. escape interpolation', function() {
     assertHtml(template, [
       'p \\${this.helloWorld}',
       'p text1 \\${this.helloWorld} text2'
@@ -62,7 +62,7 @@ describe('Text interpolation', function() {
       {});
   });
 
-  test('interpolation with escaping', function() {
+  test('7. interpolation with escaping', function() {
     assertHtml(template, [
       '| ${this.evilMethod()}'
       ],
@@ -70,7 +70,7 @@ describe('Text interpolation', function() {
       {});
   });
 
-  test('interpolation with escaping', function() {
+  test('8. interpolation with escaping', function() {
     assertHtml(template, [
       '| ${=this.evilMethod()}'
       ],
@@ -78,7 +78,7 @@ describe('Text interpolation', function() {
       {});
   });
 
-  test('interpolation with escaping and delimiter', function() {
+  test('9. interpolation with escaping and delimiter', function() {
     assertHtml(template, [
       '| ${(this.evilMethod())}'
       ],

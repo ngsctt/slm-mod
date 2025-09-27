@@ -14,7 +14,7 @@ describe('Embedded engines', function() {
     });
   });
 
-  test('render with javascript', function() {
+  test('1. render with javascript', function() {
     assertHtml(template, [
       'javascript:   ',
       '  $(function() {});',
@@ -27,7 +27,7 @@ describe('Embedded engines', function() {
       {});
   });
 
-  test('render with script', function() {
+  test('2. render with script', function() {
     assertHtml(template, [
       'script:   ',
       '  $(function() {});',
@@ -40,7 +40,7 @@ describe('Embedded engines', function() {
       {});
   });
 
-  test('render with javascript including variable', function() {
+  test('3. render with javascript including variable', function() {
     assertHtml(template, [
       '- var func = "alert(\'hello\');"',
       'javascript:   ',
@@ -50,7 +50,7 @@ describe('Embedded engines', function() {
       {});
   });
 
-  test('render with css', function() {
+  test('4. render with css', function() {
     assertHtml(template, [
       'css:',
       '  body { color: red; }'
@@ -59,7 +59,7 @@ describe('Embedded engines', function() {
       {});
   });
 
-  test('render with custom engine', function() {
+  test('5. render with custom engine', function() {
     assertHtml(template, [
       'customEngine:',
       '  text ${this.helloWorld}',
@@ -69,7 +69,7 @@ describe('Embedded engines', function() {
       {});
   });
 
-  test('throws an error on unregistered engine', function() {
+  test('6. throws an error on unregistered engine', function() {
     expect(function() {
       assertHtml(template, [
         'unregistered:',

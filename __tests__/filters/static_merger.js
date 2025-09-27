@@ -10,7 +10,7 @@ describe('StaticMerger', function() {
     filter = new StaticMerger();
   });
 
-  test('merge serveral statics', function() {
+  test('1. merge serveral statics', function() {
     expect(
       filter.exec(['multi',
         ['static', 'Hello '],
@@ -21,7 +21,7 @@ describe('StaticMerger', function() {
     );
   });
 
-  test('merge serveral statics around code', function() {
+  test('2. merge serveral statics around code', function() {
     expect(
       filter.exec(['multi',
         ['static', 'Hello '],
@@ -37,7 +37,7 @@ describe('StaticMerger', function() {
       ]);
   });
 
-  test('merge serveral statics across newlines', function() {
+  test('3. merge serveral statics across newlines', function() {
     expect(
       filter.exec(['multi',
         ['static', 'Hello '],

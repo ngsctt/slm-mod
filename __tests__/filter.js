@@ -60,7 +60,7 @@ describe('Filter', function() {
     filter = new TestFilter();
   });
 
-  test('#dispatchedMethods', function() {
+  test('1. #dispatchedMethods', function() {
     const filter = new Filter();
     expect(filter._dispatchedMethods().sort()).toEqual([
       'on_block',
@@ -84,23 +84,23 @@ describe('Filter', function() {
     ]);
   });
 
-  test('return unhandled expressions', function() {
+  test('2. return unhandled expressions', function() {
     expect(filter.exec(['unhandled'])).toEqual(['unhandled']);
   });
 
-  test('dispatch first level', function() {
+  test('3. dispatch first level', function() {
     expect(filter.exec(['test', 42])).toEqual(['on_test', 42]);
   });
 
-  test('dispatch second level', function() {
+  test('4. dispatch second level', function() {
     expect(filter.exec(['second', 'test', 42])).toEqual(['on_second_test', 42]);
   });
 
-  test('dispatch second level if prefixed', function() {
+  test('5. dispatch second level if prefixed', function() {
     expect(filter.exec(['test', 'check', 42])).toEqual(['on_check', 42]);
   });
 
-  test('dispatch parent level', function() {
+  test('6. dispatch parent level', function() {
     expect(filter.exec(['a', 42])).toEqual(['a', 42]);
     expect(filter.exec(['a', 'b', 42])).toEqual(['on_ab', 42]);
     expect(filter.exec(['a', 'b', 'test', 42])).toEqual(['on_ab_test', 42]);

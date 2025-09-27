@@ -9,7 +9,7 @@ describe('Html escaping', function() {
     template = new Template(VM);
   });
 
-  test('html will not be escaped', function() {
+  test('1. html will not be escaped', function() {
     assertHtml(template, [
       'p <Hello> World, meet "Slm".'
       ],
@@ -17,7 +17,7 @@ describe('Html escaping', function() {
       {});
   });
 
-  test('html with newline will not be escaped', function() {
+  test('2. html with newline will not be escaped', function() {
     assertHtml(template, [
       'p',
       '  |',
@@ -28,7 +28,7 @@ describe('Html escaping', function() {
       {});
   });
 
-  test('html with escaped interpolation', function() {
+  test('3. html with escaped interpolation', function() {
     assertHtml(template, [
       '- var x = \'"\'',
       '- var content = \'<x>\'',
@@ -38,7 +38,7 @@ describe('Html escaping', function() {
       {});
   });
 
-  test('html with raw interpolation', function() {
+  test('4. html with raw interpolation', function() {
     assertHtml(template, [
       '- var x = "text<br/>"',
       'p ${=x}',
@@ -50,7 +50,7 @@ describe('Html escaping', function() {
       {});
   });
 
-  test('html nested escaping', function() {
+  test('5. html nested escaping', function() {
     assertHtml(template, [
       '= this.helloBlock(function())',
       '  | escaped &'
@@ -59,7 +59,7 @@ describe('Html escaping', function() {
       {});
   });
 
-  test('html quoted attr escape', function() {
+  test('6. html quoted attr escape', function() {
     assertHtml(template, [
       'p id="&" class=="&amp;"'
       ],
@@ -67,7 +67,7 @@ describe('Html escaping', function() {
       {});
   });
 
-  test('html quoted attr escape with interpolation', function() {
+  test('7. html quoted attr escape with interpolation', function() {
     assertHtml(template, [
       'p id="&${\'"\'}" class=="&amp;${\'"\'}"',
       'p id="&${=\'"\'}" class=="&amp;${=\'"\'}"'
@@ -76,7 +76,7 @@ describe('Html escaping', function() {
       {});
   });
 
-  test('html js attr escape', function() {
+  test('8. html js attr escape', function() {
     assertHtml(template, [
       'p id=(\'&\'.toString()) class==(\'&amp;\'.toString())'
       ],
@@ -84,7 +84,7 @@ describe('Html escaping', function() {
       {});
   });
 
-  test('html json xss', function() {
+  test('9. html json xss', function() {
     assertHtml(template, [
       'script:',
       '  var x = ${= j()};'

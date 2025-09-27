@@ -9,7 +9,7 @@ describe('New partials', function() {
   beforeEach(function() {
   });
 
-  test('test constructor partials', function() {
+  test('1. test constructor partials', function() {
     const layout = [
       'html',
       '  head',
@@ -55,7 +55,7 @@ describe('New partials', function() {
     expect(result).toEqual('<html><head><meta content="World" name="keywords" /></head><body><p>Hello, World</p><p>Partial Layout</p><strong>The partial is the best</strong><p>nice</p><strong>super!!! World</strong></body></html>');
   });
 
-  test('test current context in constructor partials by default', function() {
+  test('2. test current context in constructor partials by default', function() {
     const a = 'p Partial ${this.who}'
     const options = {
       partials: {
@@ -77,7 +77,7 @@ describe('New partials', function() {
     expect(result).toEqual('<p>Current World</p><p>Partial World</p><p>Current Another</p><p>Partial Another</p>');
   });
 
-  test('test function call partials', function() {
+  test('3. test function call partials', function() {
     const layout = [
       'html',
       '  head',
@@ -123,7 +123,7 @@ describe('New partials', function() {
     expect(result).toEqual('<html><head><meta content="World" name="keywords" /></head><body><p>Hello, World</p><p>Partial Layout</p><strong>The partial is the best</strong><p>nice</p><strong>super!!! World</strong></body></html>');
   });
 
-  test('test current context in function call partials by default', function() {
+  test('4. test current context in function call partials by default', function() {
     const a = 'p Partial ${this.who}'
     const options = {
       partials: {

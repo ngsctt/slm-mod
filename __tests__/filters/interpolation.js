@@ -10,7 +10,7 @@ describe('Interpolate', function() {
     template = new Template(VM);
   });
 
-  test('interpolation in attribute', function() {
+  test('1. interpolation in attribute', function() {
     const src = 'p id="a${this.idHelper}b" = this.helloWorld';
 
     expect(
@@ -20,7 +20,7 @@ describe('Interpolate', function() {
     );
   });
 
-  test('interpolation in attribute', function() {
+  test('2. interpolation in attribute', function() {
     const src = 'p id="a${this.idHelper}b" = this.helloWorld';
 
     expect(
@@ -31,7 +31,7 @@ describe('Interpolate', function() {
   });
 
   // Not yet
-  test('nested interpolation in attribute', function() {
+  test('3. nested interpolation in attribute', function() {
     const src = 'p id="${"abc${1+1}" + "("}" = this.helloWorld';
 
     expect(
@@ -42,14 +42,14 @@ describe('Interpolate', function() {
 
   });
 
-  test('Text interpolation: Expected closing }', function() {
+  test('4. Text interpolation: Expected closing }', function() {
     const src = 'p ${abc';
 
     expect(function(){ template.render(src, {}); }).toThrow('Text interpolation: Expected closing }');
 
   });
 
-  test('interpolation in text', function() {
+  test('5. interpolation in text', function() {
     const src =
       'p\n' +
       '  . ${this.helloWorld} with "quotes"\n' +
@@ -63,7 +63,7 @@ describe('Interpolate', function() {
       '<p>Hello World from @env with \"quotes\" </p><p>A message from the compiler: Hello World from @env </p>');
   });
 
-  test('interpolation in tag', function() {
+  test('6. interpolation in tag', function() {
     const src = 'p ${this.helloWorld}';
     expect(
       template.render(src, {helloWorld: 'Hello'})
@@ -71,7 +71,7 @@ describe('Interpolate', function() {
       '<p>Hello</p>');
   });
 
-  test('escape interpolation', function() {
+  test('7. escape interpolation', function() {
     const src =
       'p \\${this.helloWorld}\n' +
       'p text1 \\${this.helloWorld} text2';
@@ -81,7 +81,7 @@ describe('Interpolate', function() {
       '<p>${this.helloWorld}</p><p>text1 ${this.helloWorld} text2</p>');
   });
 
-  test('interpolation with escaping', function() {
+  test('8. interpolation with escaping', function() {
     const src = '. ${this.evilMethod()}';
     expect(
       template.render(src, {evilMethod: function() {return '<script>do_something_evil();</script>';}})
@@ -89,14 +89,14 @@ describe('Interpolate', function() {
       '&lt;script&gt;do_something_evil();&lt;/script&gt; ');
   });
 
-  test('interpolation without escaping', function() {
+  test('9. interpolation without escaping', function() {
     const src = '| ${= this.evilMethod()}';
     expect(
       template.render(src, {evilMethod: function() {return '<script>do_something_evil();</script>';}})
     ).toEqual('<script>do_something_evil();</script>');
   });
 
-  test('interpolation with escaping and delimiter', function() {
+  test('10. interpolation with escaping and delimiter', function() {
     const src = '| ${(this.evilMethod())}';
     expect(
       template.render(src, {evilMethod: function() {return '<script>do_something_evil();</script>';}})
