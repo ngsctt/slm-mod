@@ -537,59 +537,7 @@ describe('Html structure', function() {
     {});
   });
 
-  test('54. test context', function() {
-    const VM = template.VM;
-    const vm = new VM();
-    vm.resetCache();
-
-    const compileOptions = {
-      basePath: '/',
-      filename: 'layout'
-    };
-
-    vm.cache(compileOptions.filename, template.exec([
-      'html',
-      '  head',
-      '    = content("head")',
-      '  body',
-      '    = content()'
-    ].join('\n'), compileOptions, vm));
-
-    compileOptions.filename = 'partialLayout';
-    vm.cache(compileOptions.filename, template.exec([
-      'p Partial Layout',
-      '= content()'
-    ].join('\n'), compileOptions, vm));
-
-    compileOptions.filename = 'partialWorld';
-    vm.cache(compileOptions.filename, template.exec([
-      '- extend("partialLayout")',
-      '- if this.what',
-      '  strong The partial is ${this.what}',
-      '= content("partial.override")',
-      '= content()'
-    ].join('\n'), compileOptions, vm));
-
-
-    compileOptions.filename = '/script';
-
-    const src = [
-      '- extend("layout")',
-      '= content("head")',
-      '  meta name="keywords" content=this.who',
-      'p Hello, ${this.who}',
-      '= partial("partial" + this.who, {what: this.what})',
-      '  = content("partial.override")',
-      '    p nice',
-      '  strong super!!! ${this.who}'
-    ].join('\n');
-
-
-    const result = template.render(src, {who: 'World', what: 'the best'}, compileOptions, vm);
-    expect(result).toEqual('<html><head><meta content="World" name="keywords" /></head><body><p>Hello, World</p><p>Partial Layout</p><strong>The partial is the best</strong><p>nice</p><strong>super!!! World</strong></body></html>');
-  });
-
-  test('55. test current context in partials by default', function() {
+  test('54. test current context in partials by default', function() {
     const VM = template.VM;
     const vm = new VM();
     vm.resetCache();

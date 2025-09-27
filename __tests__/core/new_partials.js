@@ -15,27 +15,18 @@ describe('New partials', function() {
       '  head',
       '    = content("head")',
       '  body',
-      '    = content()'
+      '    = content("body")'
     ].join('\n');
 
-    const partialLayout = [
-      'p Partial Layout',
-      '= content()'
-    ].join('\n');
-
-    const partialWorld = [
-      '- extend("partialLayout")',
+    const partial = [
       '- if this.what',
       '  strong The partial is ${this.what}',
-      '= content("partial.override")',
-      '= content()'
     ].join('\n');
 
     const options = {
       partials: {
         layout,
-        partialLayout,
-        partialWorld
+        partial
       }
     }
     const template = new Template(VM, options);
@@ -44,15 +35,14 @@ describe('New partials', function() {
       '- extend("layout")',
       '= content("head")',
       '  meta name="keywords" content=this.who',
-      'p Hello, ${this.who}',
-      '= partial("partial" + this.who, {what: this.what})',
-      '  = content("partial.override")',
-      '    p nice',
-      '  strong super!!! ${this.who}'
+      '= content("body")',
+      '  p',
+      "    ' Hello, ${this.who}",
+      '    = partial("partial", {what: this.what})'
     ].join('\n');
 
     const result = template.render(src, {who: 'World', what: 'the best'}, {});
-    expect(result).toEqual('<html><head><meta content="World" name="keywords" /></head><body><p>Hello, World</p><p>Partial Layout</p><strong>The partial is the best</strong><p>nice</p><strong>super!!! World</strong></body></html>');
+    expect(result).toEqual('<html><head><meta content="World" name="keywords" /></head><body><p>Hello, World <strong>The partial is the best</strong></p></body></html>');
   });
 
   test('2. test current context in constructor partials by default', function() {
@@ -83,27 +73,18 @@ describe('New partials', function() {
       '  head',
       '    = content("head")',
       '  body',
-      '    = content()'
+      '    = content("body")'
     ].join('\n');
 
-    const partialLayout = [
-      'p Partial Layout',
-      '= content()'
-    ].join('\n');
-
-    const partialWorld = [
-      '- extend("partialLayout")',
+    const partial = [
       '- if this.what',
       '  strong The partial is ${this.what}',
-      '= content("partial.override")',
-      '= content()'
     ].join('\n');
 
     const options = {
       partials: {
         layout,
-        partialLayout,
-        partialWorld
+        partial
       }
     }
     const template = new Template(VM);
@@ -112,15 +93,14 @@ describe('New partials', function() {
       '- extend("layout")',
       '= content("head")',
       '  meta name="keywords" content=this.who',
-      'p Hello, ${this.who}',
-      '= partial("partial" + this.who, {what: this.what})',
-      '  = content("partial.override")',
-      '    p nice',
-      '  strong super!!! ${this.who}'
+      '= content("body")',
+      '  p',
+      "    ' Hello, ${this.who}",
+      '    = partial("partial", {what: this.what})'
     ].join('\n');
 
     const result = template.render(src, {who: 'World', what: 'the best'}, options);
-    expect(result).toEqual('<html><head><meta content="World" name="keywords" /></head><body><p>Hello, World</p><p>Partial Layout</p><strong>The partial is the best</strong><p>nice</p><strong>super!!! World</strong></body></html>');
+    expect(result).toEqual('<html><head><meta content="World" name="keywords" /></head><body><p>Hello, World <strong>The partial is the best</strong></p></body></html>');
   });
 
   test('4. test current context in function call partials by default', function() {

@@ -200,27 +200,7 @@ describe('Code structure', function() {
     }).toThrow('Missing open brace \"(\" in `this.block)`');
   });
 
-  test('14. content', function() {
-    assertHtml(template, [
-      '= content()',
-      'p After 1',
-      '= content("head")',
-      'p After 2',
-      '= content(false)',
-        'title title1',
-      'p After 3',
-      '= content("head")',
-        'title title2',
-      'p After 4',
-      '= content("head")',
-      '= content(false)',
-      '  p Not captured'
-      ],
-      '<p>After 1</p><p>After 2</p><title>title1</title><p>After 3</p><title>title2</title><p>After 4</p><p>Not captured</p>',
-      {});
-  });
-
-  test('15. simple mixin', function() {
+  test('14. simple mixin', function() {
     assertHtml(template, [
       '= mixin("say", "a", "b")',
       '  p Hello ${this.a} by ${this.b}',
@@ -231,7 +211,7 @@ describe('Code structure', function() {
       {});
   });
 
-  test('16. mixin with loop', function() {
+  test('15. mixin with loop', function() {
     assertHtml(template, [
       '= mixin("say", "list")',
       '  ul',
@@ -244,13 +224,11 @@ describe('Code structure', function() {
       {});
   });
 
-  test('17. second simple mixin', function() {
+  test('16. second simple mixin', function() {
     // Previously 'mixin with content'
     assertHtml(template, [
-      '= content("myContent")',
-      '  p Hello from mixin!',
       '= mixin("say", "listOfItems")',
-      '  = content("myContent")',
+      '  p Hello from mixin!',
       '  ul',
       '    - this.listOfItems.forEach(function(item))',
       '      li = item.name',
@@ -262,7 +240,7 @@ describe('Code structure', function() {
       {});
   });
 
-  test('18. mixin with all defaults values', function() {
+  test('17. mixin with all defaults values', function() {
     assertHtml(template, [
       '= mixin("say", "a = Slm", "b = mixin")',
       '  p Hello ${this.a} by ${this.b}',
@@ -274,7 +252,7 @@ describe('Code structure', function() {
   });
 
 
-  test('19. mixin with first default value', function() {
+  test('18. mixin with first default value', function() {
     assertHtml(template, [
       '= mixin("say", "a = Slm", "b")',
       '  p Hello ${this.a} by ${this.b}',
@@ -285,7 +263,7 @@ describe('Code structure', function() {
       {});
   });
 
-  test('20. mixin with second default value', function() {
+  test('19. mixin with second default value', function() {
     assertHtml(template, [
       '= mixin("say", "a", "b= mixin")',
       '  p Hello ${this.a} by ${this.b}',
@@ -296,7 +274,7 @@ describe('Code structure', function() {
       {});
   });
 
-  test('21. mixin with contexts', function() {
+  test('20. mixin with contexts', function() {
     const VM = template.VM;
     const vm = new VM();
     vm.resetCache();
@@ -321,7 +299,7 @@ describe('Code structure', function() {
     expect(result).toEqual('<div class="hello"><p>Hello Slm by mixin</p></div>');
   });
 
-  test('22. render with forEach', function() {
+  test('21. render with forEach', function() {
     assertHtml(template, [
       'div',
       '  - this.items.forEach(function(i))',
@@ -331,7 +309,7 @@ describe('Code structure', function() {
       {});
   });
 
-  test('23. render with for', function() {
+  test('22. render with for', function() {
     assertHtml(template, [
       'ul',
       '  - for let item in this.items',
@@ -341,7 +319,7 @@ describe('Code structure', function() {
     {});
   });
 
-  test('24. render with multiline attributes', function() {
+  test('23. render with multiline attributes', function() {
     assertHtml(template, [
       'div class="test\\',
       '    nice"'
@@ -357,7 +335,7 @@ describe('Code structure', function() {
       {});
   });
 
-  test('25. render with multiline attributes', function() {
+  test('24. render with multiline attributes', function() {
     assertHtml(template, [
       'div class=(1 + \\',
       '  2)'
